@@ -1,0 +1,26 @@
+android_app{
+    name: "ParkingCar",
+    srcs: [
+        "java/**/*.java",
+    ],
+    resource_dirs: ["res"],
+    manifest: "AndroidManifest.xml",
+    libs: [
+       "android.car", 
+    ],
+    static_libs: [
+    "androidx-constraintlayout_constraintlayout-solver",
+    "androidx-constraintlayout_constraintlayout",
+    "androidx.appcompat_appcompat",
+    "com.google.android.material_material",
+    ],
+
+    platform_apis: true,
+    privileged: true,
+    certificate: "platform",
+
+    optimize: {
+        enabled: false,
+    },
+
+}
