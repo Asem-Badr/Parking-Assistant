@@ -1,0 +1,33 @@
+cc_library_shared {
+    name: "ultrasonic_sensor",
+    srcs: [
+        "src/UltrasonicSensor.cpp",  // C++ source files
+    ],
+    shared_libs: [
+        "liblog",      // Optionally link against liblog for logging
+    ],
+    include_dirs: [
+        "device/brcm/iti-GP/hal/parking/ultrasonic/include",  // Include the header directory
+    ],
+    cflags: [
+        "-std=c++11",  // Set the C++ standard to use
+    ],
+    stl: "libc++",  // Use the modern C++ standard library
+}
+
+cc_binary {
+    name: "test_ultrasonic",   //  The test binary to be built
+    srcs: [
+        "Test/test_ultrasonic.cpp",  //  Test file
+    ],
+    shared_libs: [
+        "ultrasonic_sensor",   // Link the ultrasonic_sensor shared library
+    ],
+    include_dirs: [
+        "device/brcm/iti-GP/hal/parking/ultrasonic/include",    // Path to headers
+    ],
+    cflags: [
+        "-std=c++11",   // Use C++11 standard
+    ],
+    stl: "libc++",   //  Use modern C++ standard library
+}
