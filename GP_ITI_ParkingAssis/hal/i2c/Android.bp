@@ -1,0 +1,33 @@
+cc_library_shared {
+    name: "lib_i2c",
+    srcs: [
+        "src/I2CHal.cpp",  // C++ source files
+    ],
+    shared_libs: [
+        "liblog",      // Optionally link against liblog for logging
+    ],
+    include_dirs: [
+        "device/brcm/iti-GP/hal/i2c/include",  // Include the header directory
+    ],
+    cflags: [
+        "-std=c++11",  // Set the C++ standard to use
+    ],
+    stl: "libc++",  // Use the modern C++ standard library
+}
+
+cc_binary {
+    name: "test_i2c",   //  The test binary to be built
+    srcs: [
+        "Test/testi2c.cpp",  //  Test file
+    ],
+    shared_libs: [
+        "lib_i2c",   // Link the ultrasonic_sensor shared library
+    ],
+    include_dirs: [
+        "device/brcm/iti-GP/hal/i2c/include",    // Path to headers
+    ],
+    cflags: [
+        "-std=c++11",   // Use C++11 standard
+    ],
+    stl: "libc++",   //  Use modern C++ standard library
+}
