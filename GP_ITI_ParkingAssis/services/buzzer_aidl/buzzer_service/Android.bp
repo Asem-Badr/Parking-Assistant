@@ -1,0 +1,49 @@
+cc_defaults{
+    name: "com.luxoft.buzzer-defaults",
+    shared_libs: [
+        "com.luxoft.buzzer-V1-ndk",
+        "libbase",
+        "libbinder_ndk",
+    ],
+    vendor: true,
+}
+
+cc_library_static {
+    name: "com.luxoft.buzzer-lib",
+    defaults: ["com.luxoft.buzzer-defaults"],
+    srcs: [
+        "src/*",
+    ],
+    export_include_dirs: [
+        "src/include",
+    ],
+    
+}
+
+cc_binary {
+    name: "buzzer-service",
+    defaults: ["com.luxoft.buzzer-defaults"],
+    relative_install_path: "hw",
+    init_rc: ["init/buzzer-default.rc"],
+    vintf_fragments: ["manifest/buzzer_device_manifest.xml"],
+    vendor: true,
+    srcs: [
+        "src/buzzer_service_main.cpp",
+    ],
+    static_libs: [
+        "com.luxoft.buzzer-lib",
+        ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcamera_metadata",
+        "libcutils",
+        "libgui",
+        "liblog",
+        "libnativewindow",
+        "libutils",
+    ]
+}
+
+
+

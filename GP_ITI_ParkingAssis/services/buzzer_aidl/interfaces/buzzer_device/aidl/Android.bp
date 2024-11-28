@@ -1,0 +1,19 @@
+aidl_interface {
+    name: "com.luxoft.buzzer",
+    srcs: ["com/luxoft/buzzer/*.aidl"],
+    stability: "vintf",
+    vendor_available: true,
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+    },
+    owner: "Luxoft",
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+
+}
