@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+
+    <!-- Gradient Background Colors -->
+    <color name="gradient_start_color">#D1D1D1</color> <!-- Soft Gray -->
+    <color name="gradient_center_color">#F4F4F4</color> <!-- Light Gray -->
+    <color name="gradient_end_color">#FFFFFF</color> <!-- White -->
+
+    <!-- Alert Colors -->
+    <color name="gradient_start_color_red">#FF0000</color> <!-- Soft Red -->
+    <color name="gradient_start_color_dark_orange">#F96E2A</color> <!-- Modern Orange -->
+    <color name="gradient_center_color_dark_orange">#FFEEE5</color> <!-- Modern Orange -->
+
+    <color name="gradient_start_color_yellow">#FFD700</color> <!-- Golden Yellow -->
+    <color name="gradient_center_color_yellow">#FFF3A2</color> <!-- Golden Yellow -->
+
+    <color name="gradient_start_color_green">#4CAF50</color> <!-- Emerald Green -->
+    <color name="gradient_center_color_green">#D6FAD7</color> <!-- Emerald Green -->
+
+</resources>

@@ -1,6 +1,6 @@
 
 android_app {
-    name: "ParKAssistFirstDemoAPP",
+    name: "UltrasonicAidlTest",
     certificate: "platform",
    // privileged: true,
     srcs: ["java/**/*.java"],
