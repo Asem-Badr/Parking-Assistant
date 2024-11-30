@@ -1,0 +1,21 @@
+
+android_app {
+    name: "UltrasonicAidlTest",
+    certificate: "platform",
+   // privileged: true,
+    srcs: ["java/**/*.java"],
+    resource_dirs: [
+        "res",
+    ],
+    platform_apis: true,
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "com.google.android.material_material",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.navigation_navigation-fragment-ktx",
+        "androidx.navigation_navigation-ui-ktx",
+        "com.luxoft.ultrasonic-V1-java",
+    ],
+
+}
