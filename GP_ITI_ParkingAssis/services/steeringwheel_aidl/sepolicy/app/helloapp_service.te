@@ -1,0 +1,19 @@
+# Rules for the aosp layer app/service helloapp3_service
+type helloapp3_service, domain;
+app_domain(helloapp3_service)
+
+allow helloapp3_service activity_service:service_manager find;
+allow helloapp3_service netstats_service:service_manager find;
+allow helloapp3_service surfaceflinger_service:service_manager find;
+allow helloapp3_service audio_service:service_manager find;
+allow helloapp3_service content_capture_service:service_manager find;
+allow helloapp3_service game_service:service_manager find;
+allow helloapp3_service gpu_service:service_manager find;
+allow helloapp3_service hint_service:service_manager find;
+
+# Find and communicate with HAL components
+hal_client_domain(helloapp3_service, hal_hello)
+
+net_domain(helloapp3_service)
+
+allow helloapp3_service radio_service:service_manager find;

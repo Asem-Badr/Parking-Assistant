@@ -1,0 +1,20 @@
+aidl_interface {
+    name: "com.luxoft.steeringwheel",
+    srcs: ["com/luxoft/steeringwheel/*.aidl"],
+    stability: "vintf",
+    vendor_available: true,
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+    },
+    owner: "Luxoft",
+    versions_with_info: [
+        {
+            version: "1",
+            imports: [],
+        },
+    ],
+ 
+
+}
