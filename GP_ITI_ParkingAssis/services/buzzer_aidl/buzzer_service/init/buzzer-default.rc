@@ -1,0 +1,10 @@
+service buzzer-service /vendor/bin/hw/buzzer-service
+    interface aidl com.luxoft.buzzer.IBuzzer/default
+    class main
+    user root
+    group root
+    shutdown critical
+    oneshot
+
+on boot
+    ./vendor/bin/hw/buzzer-service

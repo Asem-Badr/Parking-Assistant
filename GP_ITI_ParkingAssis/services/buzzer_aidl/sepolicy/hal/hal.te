@@ -1,0 +1,16 @@
+#define hello2 hal2
+type hal2_hello_hwservice, hwservice_manager_type;
+
+hal_attribute(hello2)
+
+binder_call(hal_hello_client, hal_hello_server)
+binder_call(hal_hello_server, hal_hello_client)
+
+add_hwservice(hal_hello_server, hal2_hello_hwservice)
+allow system_app hal2_hello_hwservice:hwservice_manager find;
+
+allow helloapp2_service hal_hello_hwservice:hwservice_manager find;
+allow helloapp2_service hello:binder { call transfer };
+
+
+

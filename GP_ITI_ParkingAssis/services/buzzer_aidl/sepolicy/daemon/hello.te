@@ -1,0 +1,19 @@
+# hello2 HAL service daemon
+type hello2, domain;
+type hello2_exec, exec_type, file_type, vendor_file_type;
+typeattribute hello2 hal_automotive_socket_exemption;
+
+init_daemon_domain(hello2)
+
+# Basic networking permissions
+net_domain(hello2)
+
+#hello2 SOME/IP server binder interface
+vndbinder_use(hello2);
+
+# Find and communicate with hwservicemanager
+binder_call(hello2, hwservicemanager)
+
+hal_server_domain(hello2, hal_hello)
+
+allow hello2 servicemanager:binder { call transfer };
