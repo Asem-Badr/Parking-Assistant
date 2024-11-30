@@ -1,2 +1,0 @@
-# HAL hello_service
-/vendor/bin/hw/ultrasonic-service u:object_r:hello_exec:s0
