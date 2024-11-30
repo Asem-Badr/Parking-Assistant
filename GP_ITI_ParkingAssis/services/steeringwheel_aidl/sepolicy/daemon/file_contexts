@@ -1,0 +1,2 @@
+# HAL hello_service
+/vendor/bin/hw/steeringwheel-service u:object_r:hello_exec:s0

@@ -1,0 +1,65 @@
+cc_defaults{
+    name: "com.luxoft.steeringwheel-defaults",
+    shared_libs: [
+        "com.luxoft.steeringwheel-V1-ndk",
+        "libbase",
+        "libbinder_ndk",
+    ],
+    vendor: true,
+}
+
+cc_library_static {
+    name: "com.luxoft.steeringwheel-lib",
+    defaults: ["com.luxoft.steeringwheel-defaults"],
+    srcs: [
+        "src/*",
+    ],
+    export_include_dirs: [
+        "src/include",
+    ],
+}
+
+cc_binary {
+    name: "steeringwheel-service",
+    defaults: ["com.luxoft.steeringwheel-defaults"],
+    relative_install_path: "hw",
+    init_rc: ["init/steeringwheel-default.rc"],
+    vintf_fragments: ["manifest/steeringwheel_device_manifest.xml"],
+    vendor: true,
+    srcs: [
+        "src/steeringwheel_service_main.cpp",
+    ],
+    static_libs: [
+        "com.luxoft.steeringwheel-lib",
+        ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcamera_metadata",
+        "libcutils",
+        "libgui",
+        "liblog",
+        "libnativewindow",
+        "libutils",
+    ]
+}
+
+cc_binary {
+    name: "testi2c",
+    vendor: true,
+    srcs: [
+        "src/testi2c.cpp",
+    ],
+   
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcamera_metadata",
+        "libcutils",
+        "libgui",
+        "liblog",
+        "libnativewindow",
+        "libutils",
+    ]
+}
+
