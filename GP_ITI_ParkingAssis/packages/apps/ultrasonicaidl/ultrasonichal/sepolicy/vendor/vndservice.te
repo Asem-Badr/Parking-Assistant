@@ -1,0 +1,6 @@
+type hello_server_service, hal_service_type, protected_service, service_manager_type;
+
+allow hello hello_server_service:service_manager add;
+allow helloapp_service hello_server_service:service_manager find;
+
+

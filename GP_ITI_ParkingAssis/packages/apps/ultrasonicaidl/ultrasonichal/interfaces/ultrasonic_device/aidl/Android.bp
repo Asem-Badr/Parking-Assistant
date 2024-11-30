@@ -1,0 +1,13 @@
+aidl_interface {
+    name: "com.luxoft.ultrasonic",
+    srcs: ["com/luxoft/ultrasonic/*.aidl"],
+    stability: "vintf",
+    vendor_available: true,
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+    },
+    owner: "Luxoft",
+    
+}
