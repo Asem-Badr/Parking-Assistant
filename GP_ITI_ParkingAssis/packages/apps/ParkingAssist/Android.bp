@@ -1,0 +1,31 @@
+android_app {
+    name: "ParkingAssistApp",
+    certificate: "platform",
+    srcs: [
+         "java/**/*.kt",
+         "java/**/*.java",
+         "aidl/**/*.aidl",
+    ],
+    
+    resource_dirs: [
+        "res",
+    ],
+    platform_apis: true,
+    static_libs: [
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "com.google.android.material_material",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.navigation_navigation-fragment-ktx",
+        "androidx.navigation_navigation-ui-ktx",
+        "androidx.camera_camera-camera2",
+        "androidx.camera_camera-core",
+        "androidx.camera_camera-lifecycle",
+
+
+        "com.luxoft.steeringwheel-V1-java",
+        "com.luxoft.ultrasonic-V1-java",
+        "com.luxoft.buzzer-V1-java",
+    ],
+    
+}
