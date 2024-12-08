@@ -144,5 +144,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/volume_up_24px" />
 
+    <TextView
+        android:id="@+id/txtDistanceFront"
+        android:layout_width="300dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/digital_7"
+        android:text="235"
+        android:textAlignment="viewEnd"
+        android:textColor="#FF0000"
+        android:textSize="96sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/txtDistanceBack"
+        android:layout_width="300dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/digital_7"
+        android:text="235"
+        android:textAlignment="viewEnd"
+        android:textColor="#FF0000"
+        android:textSize="96sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

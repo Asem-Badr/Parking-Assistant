@@ -1,5 +1,6 @@
 package com.luxoft.adilultrasonickotlintest
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
+import kotlinx.coroutines.delay
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorOrientationConfig: Array<GradientDrawable.Orientation> // Array for orientations
     private lateinit var steeringWheelView: SteeringWheelView
     private lateinit var steeringWheelViewInverted: SteeringWheelViewInverted
-
+    private lateinit var txtDistanceFront: TextView
+    private lateinit var txtDistanceBack: TextView
 
     private lateinit var toggleButton : ImageView
 
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         ParkingAssistantViewModelFactory(repository)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         val constraintBottomLeft = findViewById<View>(R.id.constraint_bottom_left)
         val constraintTopLeft = findViewById<View>(R.id.constraint_top_left)
 
-
+        txtDistanceFront = findViewById(R.id.txtDistanceFront)
+        txtDistanceBack = findViewById(R.id.txtDistanceBack)
 
 
 
@@ -97,6 +103,61 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        lifecycleScope.launch {
+            val lastFiveFrontReadings = mutableListOf<Int>() // Store last 5 readings for front sensors
+            val lastFiveBackReadings = mutableListOf<Int>() // Store last 5 readings for back sensors
+
+            viewModel.level4Distances.collect { distances ->
+                // Separate front and back sensors based on the specified keys
+                val frontSensors = distances.filterKeys { it in listOf(4, 5) }
+                val backSensors = distances.filterKeys { it in listOf(1, 2) }
+
+                // Process front sensors
+                if (frontSensors.isNotEmpty()) {
+                    val smallestFrontDistance = frontSensors.values.minOrNull() ?: return@collect
+
+                    // Add to front readings list
+                    lastFiveFrontReadings.add(smallestFrontDistance)
+                    if (lastFiveFrontReadings.size > 5) {
+                        lastFiveFrontReadings.removeAt(0)
+                    }
+
+                    // Display average of last 5 front readings
+                    if (lastFiveFrontReadings.size == 5) {
+                        val avgFrontDistance = lastFiveFrontReadings.average().toInt()
+                        txtDistanceFront.text = "$avgFrontDistance cm"
+                    }
+                } else {
+                    txtDistanceFront.text = "" // Clear text if no front distances
+                    lastFiveFrontReadings.clear()
+                }
+
+                // Process back sensors
+                if (backSensors.isNotEmpty()) {
+                    val smallestBackDistance = backSensors.values.minOrNull() ?: return@collect
+
+                    // Add to back readings list
+                    lastFiveBackReadings.add(smallestBackDistance)
+                    if (lastFiveBackReadings.size > 5) {
+                        lastFiveBackReadings.removeAt(0)
+                    }
+
+                    // Display average of last 5 back readings
+                    if (lastFiveBackReadings.size == 5) {
+                        val avgBackDistance = lastFiveBackReadings.average().toInt()
+                        txtDistanceBack.text = "$avgBackDistance cm"
+                    }
+                } else {
+                    txtDistanceBack.text = "" // Clear text if no back distances
+                    lastFiveBackReadings.clear()
+                }
+
+                delay(200) // Delay to throttle updates
+            }
+        }
+
+
 
 
 
