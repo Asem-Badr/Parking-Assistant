@@ -12,6 +12,9 @@ class ParkingAssistantViewModel(private val repository: IParkingAssistantReposit
     private val _sensorLevels = MutableStateFlow<Map<Int, String>>(emptyMap()) // Emits levels with hysteresis
     val sensorLevels: StateFlow<Map<Int, String>> get() = _sensorLevels
 
+    private val _level4Distances = MutableStateFlow<Map<Int, Int>>(emptyMap())
+    val level4Distances: StateFlow<Map<Int, Int>> get() = _level4Distances
+
 
     private val _steeringWheelAngle = MutableStateFlow(0)
     val steeringWheelAngle: StateFlow<Int> get() = _steeringWheelAngle
@@ -51,6 +54,7 @@ class ParkingAssistantViewModel(private val repository: IParkingAssistantReposit
         viewModelScope.launch {
             while (isRunningSensor) {
                 val levels = mutableMapOf<Int, String>() // Current levels map
+                val level4Distances = mutableMapOf<Int, Int>()
                 for (sensorId in 0..5) {
 
                     var distance = repository.getUltrasonicReading(sensorId)
@@ -61,9 +65,13 @@ class ParkingAssistantViewModel(private val repository: IParkingAssistantReposit
 
                         levels[sensorId] = "$currentLevel (Avg: $distance cm)"
                         previousLevels[sensorId] = currentLevel // Update the previous level
+
+                        if (currentLevel == "Level 4" && distance < 25) {
+                            level4Distances[sensorId] = distance
+                        }
                     }
                 }
-
+                _level4Distances.emit(level4Distances)
                 _sensorLevels.emit(levels) // Emit updated levels
                 // Automatically adjust buzzer level
                 adjustBuzzerLevel(levels)
