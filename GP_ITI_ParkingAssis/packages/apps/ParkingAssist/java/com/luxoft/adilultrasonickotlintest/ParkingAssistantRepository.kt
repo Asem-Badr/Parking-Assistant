@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 import android.os.IBinder
 import android.os.RemoteException
@@ -23,7 +23,7 @@ class ParkingAssistantRepository : IParkingAssistantRepository {
             iUltrasonic = IUltrasonic.Stub.asInterface(binder)
         } catch (e: Exception) {
             e.printStackTrace()
-            throw RuntimeException("Failed to initialize ultrasonic service: ${e.message}")
+            //throw RuntimeException("Failed to initialize ultrasonic service: ${e.message}")
         }
 
         try {

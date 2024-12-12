@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 interface IParkingAssistantRepository {
     fun getUltrasonicReading(sensorId: Int): Int

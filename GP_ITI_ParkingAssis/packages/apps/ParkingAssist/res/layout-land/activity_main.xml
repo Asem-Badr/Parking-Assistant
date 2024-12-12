@@ -6,8 +6,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@color/white"
+    android:background="@drawable/background_one"
     tools:context=".MainActivity">
+
+    <!-- Top-Left Corner Container -->
+    <FrameLayout
+        android:id="@+id/top_left_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_bottom_right"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Container for Images -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/logo_iti"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="ITI Logo"
+                android:src="@drawable/iti"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/logo_luxoft"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="Luxoft Logo"
+                android:src="@drawable/luxoft"
+                android:tint="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/logo_iti"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -103,7 +141,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.luxoft.adilultrasonickotlintest.SteeringWheelView
+    <com.luxoft.parkingassist.SteeringWheelView
         android:id="@+id/steering_wheel_view"
         android:layout_width="200dp"
         android:layout_height="0dp"
@@ -115,7 +153,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.luxoft.adilultrasonickotlintest.SteeringWheelViewInverted
+    <com.luxoft.parkingassist.SteeringWheelViewInverted
         android:id="@+id/steering_wheel_view_Inverted"
         android:layout_width="200dp"
         android:layout_height="0dp"
@@ -144,35 +182,77 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/volume_up_24px" />
 
+
     <TextView
         android:id="@+id/txtDistanceFront"
-        android:layout_width="300dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="28dp"
-        android:fontFamily="@font/digital_7"
-        android:text="235"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto_serif"
+        android:text="25"
         android:textAlignment="viewEnd"
-        android:textColor="#FF0000"
-        android:textSize="96sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        android:textColor="@color/material_dynamic_neutral50"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/constraint_left_side"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtDistanceBack"
-        android:layout_width="300dp"
-        android:layout_height="97dp"
-        android:layout_marginStart="28dp"
-        android:fontFamily="@font/digital_7"
-        android:text="235"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/roboto_serif"
+        android:text="25"
         android:textAlignment="viewEnd"
-        android:textColor="#FF0000"
-        android:textSize="96sp"
+        android:textColor="@color/material_dynamic_neutral50"
+        android:textSize="60sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/txtUnitFront"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="cm"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDistanceFront"
+        app:layout_constraintStart_toEndOf="@+id/txtDistanceFront" />
+
+    <TextView
+        android:id="@+id/txtUnitBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="6dp"
+        android:text="cm"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtDistanceBack"
+        app:layout_constraintStart_toEndOf="@+id/txtDistanceBack" />
+
+    <TextView
+        android:id="@+id/txtBackLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-9dp"
+        android:text="Back"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtDistanceBack"
+        app:layout_constraintEnd_toEndOf="@+id/txtDistanceBack" />
+
+    <TextView
+        android:id="@+id/txtFrontLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-10dp"
+        android:text="Front"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtDistanceFront"
+        app:layout_constraintEnd_toEndOf="@+id/txtDistanceFront" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

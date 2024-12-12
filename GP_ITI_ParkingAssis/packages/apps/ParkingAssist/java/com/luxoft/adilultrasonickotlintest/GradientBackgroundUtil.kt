@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable

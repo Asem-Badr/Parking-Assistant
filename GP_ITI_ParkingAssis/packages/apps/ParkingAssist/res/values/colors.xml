@@ -2,17 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black_color">#00000000</color>
+
 
 
 
     <!-- Gradient Background Colors -->
     <color name="gradient_start_color">#D1D1D1</color> <!-- Soft Gray -->
     <color name="gradient_center_color">#F4F4F4</color> <!-- Light Gray -->
-    <color name="gradient_end_color">#FFFFFF</color> <!-- White -->
+    <color name="gradient_end_color">#10FFFFFF</color> <!-- White -->
 
     <!-- Alert Colors -->
     <color name="gradient_start_color_red">#FF0000</color> <!-- Soft Red -->
-    <color name="gradient_start_color_dark_orange">#F96E2A</color> <!-- Modern Orange -->
+    <color name="gradient_start_color_dark_orange">#FF8000</color> <!-- Modern Orange -->
     <color name="gradient_center_color_dark_orange">#FFEEE5</color> <!-- Modern Orange -->
 
 

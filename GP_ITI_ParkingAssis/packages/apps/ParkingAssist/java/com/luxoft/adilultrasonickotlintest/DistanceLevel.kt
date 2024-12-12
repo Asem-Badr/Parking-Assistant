@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 data class DistanceLevel(
     val name: String,
