@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 import android.content.Context
 import android.graphics.*
@@ -50,16 +50,19 @@ class SteeringWheelViewInverted @JvmOverloads constructor(
         val lineLength = height * 0.9f // Length of the lines
         val lineSpacing = width / 8f // Distance between the two lines
 
+        // Invert the angle
+        val invertedAngle = -angle
+
         // Maximum offset for the curve based on the angle
         val maxCurveOffset = lineSpacing / 1f
-        val leftCurveOffset = (maxCurveOffset * (-angle / 90f)) // Reverse the curve for left (-90 to 0)
-        val rightCurveOffset = (maxCurveOffset * (angle / 90f)) // Reverse the curve for right (0 to 90)
+        val leftCurveOffset = (maxCurveOffset * (-invertedAngle / 90f)) // Reverse the curve for left
+        val rightCurveOffset = (maxCurveOffset * (invertedAngle / 90f)) // Reverse the curve for right
 
         // Save the original canvas state
         canvas.save()
 
-        // Rotate the canvas based on the angle
-        canvas.rotate(angle, centerX, baseY)
+        // Rotate the canvas based on the inverted angle
+        canvas.rotate(invertedAngle, centerX, baseY)
 
         // Define paths for the left and right curved lines
         val leftPath = Path().apply {
@@ -109,4 +112,5 @@ class SteeringWheelViewInverted @JvmOverloads constructor(
         // Restore the canvas to its original state
         canvas.restore()
     }
+
 }

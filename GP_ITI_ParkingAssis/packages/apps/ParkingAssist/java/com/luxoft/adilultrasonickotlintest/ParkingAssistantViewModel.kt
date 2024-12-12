@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -49,31 +49,40 @@ class ParkingAssistantViewModel(private val repository: IParkingAssistantReposit
         runBuzzer()
     }
 
+
+
     private fun startUltrasonicMonitoring() {
         val previousLevels = mutableMapOf<Int, String>() // To store previous levels for each sensor
         viewModelScope.launch {
             while (isRunningSensor) {
                 val levels = mutableMapOf<Int, String>() // Current levels map
                 val level4Distances = mutableMapOf<Int, Int>()
+
                 for (sensorId in 0..5) {
 
                     var distance = repository.getUltrasonicReading(sensorId)
-                    if (distance != -1) {
-                        // Determine the level based on the average distance
-                        val previousLevel = previousLevels[sensorId] ?: "No Obstacle"
-                        val currentLevel = determineLevelWithHysteresis(distance, previousLevel)
-
-                        levels[sensorId] = "$currentLevel (Avg: $distance cm)"
-                        previousLevels[sensorId] = currentLevel // Update the previous level
-
-                        if (currentLevel == "Level 4" && distance < 25) {
-                            level4Distances[sensorId] = distance
-                        }
+                    if (distance == -1) {
+                        distance = 80
                     }
+
+
+
+                    // Determine the level based on the average distance
+                    val previousLevel = previousLevels[sensorId] ?: "No Obstacle"
+                    val currentLevel = determineLevelWithHysteresis(distance, previousLevel)
+
+                    levels[sensorId] = "$currentLevel (Avg: $distance cm)"
+                    previousLevels[sensorId] = currentLevel // Update the previous level
+                    if (currentLevel == "Level 4" && distance < 25) {
+                           level4Distances[sensorId] = distance
+                   }
+
+
                 }
-                _level4Distances.emit(level4Distances)
+
                 _sensorLevels.emit(levels) // Emit updated levels
                 // Automatically adjust buzzer level
+                _level4Distances.emit(level4Distances)
                 adjustBuzzerLevel(levels)
             }
         }

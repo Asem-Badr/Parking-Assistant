@@ -1,4 +1,4 @@
-package com.luxoft.adilultrasonickotlintest
+package com.luxoft.parkingassist
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.GradientDrawable
@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var steeringWheelViewInverted: SteeringWheelViewInverted
     private lateinit var txtDistanceFront: TextView
     private lateinit var txtDistanceBack: TextView
+    private lateinit var txtUnitFront: TextView
+    private lateinit var txtUnitBack: TextView
+    private lateinit var txtFrontLabel: TextView
+    private lateinit var txtBackLabel: TextView
 
     private lateinit var toggleButton : ImageView
 
@@ -49,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         txtDistanceFront = findViewById(R.id.txtDistanceFront)
         txtDistanceBack = findViewById(R.id.txtDistanceBack)
+        txtUnitFront = findViewById(R.id.txtUnitFront)
+        txtUnitBack = findViewById(R.id.txtUnitBack)
+        txtFrontLabel = findViewById(R.id.txtFrontLabel)
+        txtBackLabel = findViewById(R.id.txtBackLabel)
 
 
 
@@ -126,10 +134,14 @@ class MainActivity : AppCompatActivity() {
                     // Display average of last 5 front readings
                     if (lastFiveFrontReadings.size == 5) {
                         val avgFrontDistance = lastFiveFrontReadings.average().toInt()
-                        txtDistanceFront.text = "$avgFrontDistance cm"
+                        txtDistanceFront.text = "$avgFrontDistance"
+                        txtUnitFront.text = "cm"
+                        txtFrontLabel.text = "Front"
                     }
                 } else {
                     txtDistanceFront.text = "" // Clear text if no front distances
+                    txtUnitFront.text = ""
+                    txtFrontLabel.text = ""
                     lastFiveFrontReadings.clear()
                 }
 
@@ -146,10 +158,15 @@ class MainActivity : AppCompatActivity() {
                     // Display average of last 5 back readings
                     if (lastFiveBackReadings.size == 5) {
                         val avgBackDistance = lastFiveBackReadings.average().toInt()
-                        txtDistanceBack.text = "$avgBackDistance cm"
+                        txtDistanceBack.text = "$avgBackDistance"
+                        txtUnitBack.text = "cm"
+                        txtBackLabel.text = "Back"
                     }
                 } else {
                     txtDistanceBack.text = "" // Clear text if no back distances
+                    txtUnitBack.text = ""
+                    txtBackLabel.text = ""
+
                     lastFiveBackReadings.clear()
                 }
 
@@ -281,11 +298,6 @@ class MainActivity : AppCompatActivity() {
     private fun dpToPx(dp: Float): Float {
         return dp * resources.displayMetrics.density
     }
-
-
-
-
-
 
 
 }
